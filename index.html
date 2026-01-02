@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check list Personal Pablo Frixione</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="data:,"> <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -52,10 +51,7 @@
 
     <div id="app-content">
         <div id="user-bar" class="bg-white dark:bg-darkCard shadow-sm border-b dark:border-gray-700 px-4 py-3 flex justify-between items-center sticky top-0 z-40">
-            <div class="flex items-center gap-2">
-                <span class="text-lg font-bold text-institutional dark:text-blue-400">CheckList</span>
-                <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-0.5 px-2 rounded-full font-medium">Personal</span>
-            </div>
+            <div class="flex items-center gap-2"><span class="text-lg font-bold text-institutional dark:text-blue-400">CheckList</span><span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-0.5 px-2 rounded-full font-medium">Personal</span></div>
             <div class="flex items-center gap-3">
                 <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button>
                 <div class="text-right hidden sm:block leading-tight"><p id="user-name" class="text-sm font-bold text-gray-700 dark:text-gray-200"></p><p id="user-email" class="text-xs text-gray-500 dark:text-gray-400"></p></div>
@@ -67,41 +63,42 @@
         <div id="form-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10">
             <div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-2xl relative">
                 <button id="close-form-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button>
-                <div class="flex justify-between items-baseline mb-6"><h2 id="form-title" class="text-2xl font-bold text-gray-800 dark:text-white">Añadir Tarea</h2><button type="button" id="show-import-modal-btn" class="text-sm text-institutional dark:text-blue-400 hover:underline focus:outline-none no-print">o Importar desde CSV</button></div>
+                <div class="flex justify-between items-baseline mb-6"><h2 id="form-title" class="text-2xl font-bold text-gray-800 dark:text-white">Añadir Tarea</h2><button type="button" id="show-import-modal-btn" class="text-sm text-institutional dark:text-blue-400 hover:underline focus:outline-none no-print">o Importar CSV</button></div>
                 <form id="add-task-form" class="space-y-4">
                     <input type="hidden" id="edit-task-id" name="edit-task-id">
                     <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descripción / Tarea</label><textarea id="requerimiento" name="requerimiento" rows="2" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"></textarea></div>
                     <div class="border border-gray-200 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-800/50">
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Check List (Subtareas)</label>
-                        <div class="flex gap-2 mb-2"><input type="text" id="new-subtask-input" placeholder="Nueva subtarea..." class="flex-1 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm text-sm focus:border-institutional focus:ring-institutional"><button type="button" id="add-subtask-btn" class="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">+</button></div>
+                        <div class="flex gap-2 mb-2"><input type="text" id="new-subtask-input" placeholder="Nueva subtarea..." class="flex-1 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm text-sm"><button type="button" id="add-subtask-btn" class="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700">+</button></div>
                         <ul id="subtasks-list-edit" class="space-y-2 max-h-40 overflow-y-auto text-sm"></ul>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Proyecto</label><select id="rubro" name="rubro" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"></select></div>
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Responsable</label><select id="responsable" name="responsable" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"></select></div>
+                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Proyecto</label><select id="rubro" name="rubro" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"></select></div>
+                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Responsable</label><select id="responsable" name="responsable" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"></select></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prioridad</label><select id="prioridad" name="prioridad" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"><option>Baja</option><option>Media</option><option>Alta</option></select></div>
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Costo Estimado ($)</label><input type="number" id="costo" name="costo" placeholder="0.00" step="0.01" min="0" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"></div>
+                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prioridad</label><select id="prioridad" name="prioridad" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><option>Baja</option><option>Media</option><option>Alta</option></select></div>
+                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Costo ($)</label><input type="number" id="costo" name="costo" placeholder="0.00" step="0.01" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"></div>
                     </div>
                     <div class="border-t dark:border-gray-600 pt-4 space-y-4">
                         <h3 class="text-lg font-medium text-gray-700 dark:text-gray-200">Fecha y Repetición</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Vencimiento</label><input type="date" id="deadline" name="deadline" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"></div>
-                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Repetir</label><select id="recurrence-type" name="recurrence-type" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-institutional focus:ring-institutional"><option value="none">No repetir</option><option value="daily">Diariamente</option><option value="weekly">Semanalmente</option><option value="monthly">Mensualmente</option><option value="annually">Anualmente</option><option value="periodically">Periódicamente</option></select></div>
+                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Vencimiento</label><input type="date" id="deadline" name="deadline" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"></div>
+                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Repetir</label><select id="recurrence-type" name="recurrence-type" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><option value="none">No repetir</option><option value="daily">Diariamente</option><option value="weekly">Semanalmente</option><option value="monthly">Mensualmente</option><option value="annually">Anualmente</option><option value="periodically">Periódicamente</option></select></div>
                         </div>
-                        <div id="recurrence-options-weekly" class="hidden mt-4"><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Repetir el día</label><select id="recurrence-weekly-on" name="recurrence-weekly-on" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sábado</option><option value="0">Domingo</option></select></div>
-                        <div id="recurrence-options-monthly" class="hidden mt-4 space-y-2"><div class="flex items-center"><input id="monthly-type-day" type="radio" name="monthlyType" value="dayOfMonth" class="focus:ring-institutional h-4 w-4 text-institutional border-gray-300"><label for="monthly-type-day" class="ml-3 block text-sm font-medium text-gray-700 dark:text-gray-300">El día</label><input type="number" id="recurrence-monthly-day" name="recurrence-monthly-day" min="1" max="31" class="ml-2 block w-20 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"></div><div class="flex items-center"><input id="monthly-type-weekday" type="radio" name="monthlyType" value="dayOfWeek" class="focus:ring-institutional h-4 w-4 text-institutional border-gray-300"><label for="monthly-type-weekday" class="ml-3 block text-sm font-medium text-gray-700 dark:text-gray-300">El</label><select id="recurrence-monthly-ordinal" name="recurrence-monthly-ordinal" class="ml-2 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><option value="1">1er</option><option value="2">2do</option><option value="3">3er</option><option value="4">4to</option><option value="5">Último</option></select><select id="recurrence-monthly-dayofweek" name="recurrence-monthly-dayofweek" class="ml-2 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sábado</option><option value="0">Domingo</option></select></div></div>
-                        <div id="recurrence-options-periodically" class="hidden mt-4"><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Repetir cada</label><div class="flex items-center"><input type="number" id="recurrence-periodically-days" name="recurrence-periodically-days" min="1" class="mt-1 block w-24 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><span class="ml-2 text-sm text-gray-700 dark:text-gray-300">días</span></div></div>
+                        <div id="recurrence-options-weekly" class="hidden mt-4"><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Día</label><select id="recurrence-weekly-on" name="recurrence-weekly-on" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sábado</option><option value="0">Domingo</option></select></div>
+                        <div id="recurrence-options-monthly" class="hidden mt-4 space-y-2"><div class="flex items-center"><input id="monthly-type-day" type="radio" name="monthlyType" value="dayOfMonth" class="focus:ring-institutional h-4 w-4"><label for="monthly-type-day" class="ml-3 block text-sm font-medium text-gray-700 dark:text-gray-300">Día del mes</label><input type="number" id="recurrence-monthly-day" name="recurrence-monthly-day" min="1" max="31" class="ml-2 block w-20 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"></div><div class="flex items-center"><input id="monthly-type-weekday" type="radio" name="monthlyType" value="dayOfWeek" class="focus:ring-institutional h-4 w-4"><label for="monthly-type-weekday" class="ml-3 block text-sm font-medium text-gray-700 dark:text-gray-300">El</label><select id="recurrence-monthly-ordinal" name="recurrence-monthly-ordinal" class="ml-2 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"><option value="1">1er</option><option value="2">2do</option><option value="3">3er</option><option value="4">4to</option><option value="5">Último</option></select><select id="recurrence-monthly-dayofweek" name="recurrence-monthly-dayofweek" class="ml-2 block rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"><option value="1">Lunes</option><option value="2">Martes</option><option value="3">Miércoles</option><option value="4">Jueves</option><option value="5">Viernes</option><option value="6">Sábado</option><option value="0">Domingo</option></select></div></div>
+                        <div id="recurrence-options-periodically" class="hidden mt-4"><label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cada</label><div class="flex items-center"><input type="number" id="recurrence-periodically-days" name="recurrence-periodically-days" min="1" class="mt-1 block w-24 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"><span class="ml-2 text-sm text-gray-700 dark:text-gray-300">días</span></div></div>
                     </div>
-                    <div class="flex justify-end pt-4"><button type="submit" class="bg-institutional text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition-colors">Guardar Tarea</button></div>
+                    <div class="flex justify-end pt-4"><button type="submit" class="bg-institutional text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition-colors">Guardar</button></div>
                 </form>
             </div>
         </div>
-        <div id="manage-responsables-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-manage-responsables-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Gestionar Responsables</h2><form id="add-responsable-form" class="flex gap-2 mb-4"><input type="text" id="new-responsable-name" placeholder="Nombre" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm" required><button type="submit" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg">Añadir</button></form><div id="responsables-list-container" class="space-y-2 max-h-80 overflow-y-auto"></div></div></div>
-        <div id="manage-rubros-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-manage-rubros-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Gestionar Proyectos</h2><form id="add-rubro-form" class="flex gap-2 mb-4"><input type="text" id="new-rubro-name" placeholder="Nuevo proyecto" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm" required><button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Añadir</button></form><div id="rubros-list-container" class="space-y-2 max-h-80 overflow-y-auto"></div></div></div>
-        <div id="filter-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-3xl relative"><button id="close-filter-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Filtros</h2><div class="space-y-6 text-gray-700 dark:text-gray-300"><div><h3 class="text-md font-bold mb-2">Estado</h3><div id="status-filters" class="flex flex-wrap items-center gap-2"><button class="filter-btn active py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Todos">Todos</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Pendiente">Pendiente</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="En Proceso">En Proceso</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Realizado">Realizado</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Suspendido">Suspendido</button></div></div><div><h3 class="text-md font-bold mb-2">Prioridad</h3><div id="priority-filters" class="flex flex-wrap items-center gap-2"><button class="filter-btn active py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Todos">Todas</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Baja">Baja</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Media">Media</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Alta">Alta</button></div></div><div><h3 class="text-md font-bold mb-2">Vencimiento</h3><div id="date-filters" class="flex flex-wrap items-center gap-2"><button class="filter-btn active py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Todas">Todas</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Vencidas">Vencidas</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Hoy">Vencen Hoy</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Este Mes">Vencen este mes</button><button class="filter-btn py-1 px-3 rounded-full text-sm transition-colors border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Proximas">Próximas (7d)</button></div></div><div><h3 class="text-md font-bold mb-2">Responsable</h3><div id="responsible-filters" class="flex flex-wrap items-center gap-2 max-h-40 overflow-y-auto"></div></div></div><div class="flex justify-end pt-6 border-t dark:border-gray-600 mt-6"><button id="close-filter-btn-bottom" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition-colors">Cerrar</button></div></div></div>
-        <div id="import-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-import-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Importar Tareas</h2><div class="space-y-6"><div><p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Suba un archivo CSV.</p><button id="download-template-btn" class="text-sm bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Descargar Plantilla CSV</button></div><div class="border-t dark:border-gray-600 pt-4"><label for="csv-file-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Seleccionar archivo .csv</label><input type="file" id="csv-file-input" name="csv-file-input" accept=".csv" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-institutional/10 file:text-institutional hover:file:bg-institutional/20"></div><div id="import-feedback" class="text-sm text-red-600"></div><div class="flex justify-end pt-6 border-t dark:border-gray-600 mt-6 gap-4"><button id="close-import-btn-bottom" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition-colors">Cerrar</button><button id="process-import-btn" class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 transition-colors">Procesar Importación</button></div></div></div></div>
+        
+        <div id="manage-responsables-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-manage-responsables-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Responsables</h2><form id="add-responsable-form" class="flex gap-2 mb-4"><input type="text" id="new-responsable-name" placeholder="Nombre" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm" required><button type="submit" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg">Añadir</button></form><div id="responsables-list-container" class="space-y-2 max-h-80 overflow-y-auto"></div></div></div>
+        <div id="manage-rubros-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-manage-rubros-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Proyectos</h2><form id="add-rubro-form" class="flex gap-2 mb-4"><input type="text" id="new-rubro-name" placeholder="Proyecto" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm" required><button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Añadir</button></form><div id="rubros-list-container" class="space-y-2 max-h-80 overflow-y-auto"></div></div></div>
+        <div id="filter-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-3xl relative"><button id="close-filter-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Filtros</h2><div class="space-y-6 text-gray-700 dark:text-gray-300"><div><h3 class="text-md font-bold mb-2">Estado</h3><div id="status-filters" class="flex flex-wrap items-center gap-2"><button class="filter-btn active py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Todos">Todos</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Pendiente">Pendiente</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="En Proceso">En Proceso</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Realizado">Realizado</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="status" data-filter="Suspendido">Suspendido</button></div></div><div><h3 class="text-md font-bold mb-2">Prioridad</h3><div id="priority-filters" class="flex flex-wrap items-center gap-2"><button class="filter-btn active py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Todos">Todas</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Baja">Baja</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Media">Media</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="priority" data-filter="Alta">Alta</button></div></div><div><h3 class="text-md font-bold mb-2">Vencimiento</h3><div id="date-filters" class="flex flex-wrap items-center gap-2"><button class="filter-btn active py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Todas">Todas</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Vencidas">Vencidas</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Hoy">Hoy</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Este Mes">Este Mes</button><button class="filter-btn py-1 px-3 rounded-full text-sm border border-gray-300 dark:border-gray-600" data-filter-type="date" data-filter="Proximas">Próximas</button></div></div><div><h3 class="text-md font-bold mb-2">Responsable</h3><div id="responsible-filters" class="flex flex-wrap items-center gap-2 max-h-40 overflow-y-auto"></div></div></div><div class="flex justify-end pt-6 border-t dark:border-gray-600 mt-6"><button id="close-filter-btn-bottom" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700">Cerrar</button></div></div></div>
+        <div id="import-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-darkCard p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-import-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Importar</h2><div class="space-y-6"><div><p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Suba un archivo CSV.</p><button id="download-template-btn" class="text-sm bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">Plantilla CSV</button></div><div class="border-t dark:border-gray-600 pt-4"><label for="csv-file-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Seleccionar archivo</label><input type="file" id="csv-file-input" name="csv-file-input" accept=".csv" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-institutional/10 file:text-institutional hover:file:bg-institutional/20"></div><div id="import-feedback" class="text-sm text-red-600"></div><div class="flex justify-end pt-6 border-t dark:border-gray-600 mt-6 gap-4"><button id="close-import-btn-bottom" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700">Cerrar</button><button id="process-import-btn" class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700">Procesar</button></div></div></div></div>
 
         <div class="container mx-auto p-4 sm:p-6 lg:p-8">
             <header class="text-center mb-8">
@@ -112,19 +109,17 @@
 
             <div id="controls" class="bg-white dark:bg-darkCard p-4 rounded-lg shadow-md mb-8 space-y-4">
                 <div class="flex flex-wrap items-center gap-2">
-                    <button id="add-task-btn" class="bg-institutional text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">+ Añadir Tarea</button>
-                    <button id="manage-rubros-btn" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Proyectos</button>
-                    <button id="manage-responsables-btn" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">Responsables</button>
-                    <button id="manage-filters-btn" class="bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-yellow-600 transition-colors">Filtros</button>
-                    <button id="export-pdf-btn" class="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Exportar a PDF</button>
+                    <button id="add-task-btn" class="bg-institutional text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90">+ Añadir Tarea</button>
+                    <button id="manage-rubros-btn" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">Proyectos</button>
+                    <button id="manage-responsables-btn" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Responsables</button>
+                    <button id="manage-filters-btn" class="bg-yellow-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-yellow-600">Filtros</button>
+                    <button id="export-pdf-btn" class="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-700">Exportar</button>
                 </div>
             </div>
 
             <div id="summary" class="bg-white dark:bg-darkCard p-6 rounded-lg shadow-md mb-8">
                 <h2 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Progreso General <span id="filter-label" class="text-base font-normal text-gray-500 dark:text-gray-400"></span></h2>
-                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 mb-4">
-                    <div id="progressBar" class="bg-institutional h-4 rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div>
-                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 mb-4"><div id="progressBar" class="bg-institutional h-4 rounded-full transition-all duration-500 ease-out" style="width: 0%;"></div></div>
                 <div class="flex flex-col lg:flex-row items-center gap-8 mt-6">
                     <div id="stats" class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center flex-1 order-2 lg:order-1 text-gray-800 dark:text-gray-200"></div>
                     <div class="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8 order-1 lg:order-2">
@@ -135,14 +130,12 @@
             </div>
 
             <main id="checklist-container" class="space-y-6"></main>
-
-            <footer class="text-center mt-12 text-sm text-gray-500 dark:text-gray-400">
-                <p>Sistema Personal - Datos cifrados</p>
-            </footer>
+            <footer class="text-center mt-12 text-sm text-gray-500 dark:text-gray-400"><p>Sistema Personal - Datos cifrados</p></footer>
         </div>
     </div>
 
     <script>
+        // CONFIGURACIÓN FIREBASE - CREDENCIALES INTEGRADAS
         const firebaseConfig = {
             apiKey: "AIzaSyAdbyflkDL_6FqToeZZlV-mJaUK9ra8hYU",
             authDomain: "personal-pablo-frixione.firebaseapp.com",
@@ -158,260 +151,268 @@
         const auth = firebase.auth();
         const provider = new firebase.auth.GoogleAuthProvider();
 
-        let checklistData = [];
-        let rubros = [];
-        let responsables = []; 
-        let statusChart = null;
-        let responsibleChart = null; 
-        let currentStatusFilter = 'Todos';
-        let currentPriorityFilter = 'Todos';
-        let currentDateFilter = 'Todas';
-        let currentResponsibleFilter = 'Todos'; 
-        let openRubros = new Set();
-        let openSubtasksTasks = new Set(); 
-        let editingSubtasks = []; 
+        // --- VARIABLES GLOBALES ---
+        let checklistData = [], rubros = [], responsables = [], statusChart = null, responsibleChart = null;
+        let currentStatusFilter = 'Todos', currentPriorityFilter = 'Todos', currentDateFilter = 'Todas', currentResponsibleFilter = 'Todos';
+        let openRubros = new Set(), openSubtasksTasks = new Set(), editingSubtasks = [];
 
         const statusOrder = ['Pendiente', 'En Proceso', 'Realizado', 'Suspendido'];
-        const statusOptions = { 'Pendiente': 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700', 'Realizado': 'bg-institutional/20 text-institutional border-institutional/40 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700', 'En Proceso': 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700', 'Suspendido': 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500' };
+        const statusOptions = { 'Pendiente': 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-300', 'Realizado': 'bg-institutional/20 text-institutional border-institutional/40 dark:bg-blue-900/30 dark:text-blue-300', 'En Proceso': 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-sky-900/30 dark:text-sky-300', 'Suspendido': 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-700 dark:text-gray-300' };
         const statusColors = { 'Pendiente': '#FBBF24', 'Realizado': '#2563EB', 'En Proceso': '#60A5FA', 'Suspendido': '#9CA3AF' };
         const priorityOptions = ['Baja', 'Media', 'Alta'];
-        const priorityStyles = { 'Alta': 'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700', 'Media': 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700', 'Baja': 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500' };
+        const priorityStyles = { 'Alta': 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300', 'Media': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300', 'Baja': 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300' };
         const rubroIcons = { 'default': `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>` };
         const protectedRubros = ['Eliminado'];
-        const protectedResponsables = ['Yo'];
-
-        // --- GLOBAL SCOPE FUNCTIONS (Para que el HTML las vea) ---
-        window.handleDeleteTask = function(itemId) {
-            const taskToDelete = checklistData.find(d => d.id === itemId);
-            if (taskToDelete.rubro === 'Eliminado') {
-                if (confirm(`¿Eliminar DEFINITIVAMENTE la tarea "${taskToDelete.requerimiento}"?`)) { database.ref('tasks').child(itemId).remove(); }
+        
+        // --- AUTH LOGIC ---
+        const loginBtn = document.getElementById('google-login-btn');
+        const loginStatus = document.getElementById('login-status');
+        const logoutBtn = document.getElementById('logout-btn');
+        
+        loginBtn.addEventListener('click', () => { loginStatus.textContent="Conectando..."; auth.signInWithPopup(provider).catch(e => loginStatus.textContent="Error: "+e.message); });
+        logoutBtn.addEventListener('click', () => auth.signOut());
+        
+        auth.onAuthStateChanged(user => {
+            if(user) {
+                document.getElementById('login-screen').style.display='none'; document.getElementById('app-content').style.display='block';
+                document.getElementById('user-name').textContent = user.displayName;
+                document.getElementById('user-email').textContent = user.email;
+                document.getElementById('user-photo').src = user.photoURL;
+                loadInitialData();
             } else {
-                if (confirm(`¿Mover la tarea "${taskToDelete.requerimiento}" a la papelera?`)) { database.ref('tasks').child(itemId).update({ rubro: 'Eliminado' }); }
+                document.getElementById('login-screen').style.display='flex'; document.getElementById('app-content').style.display='none';
+                loginStatus.textContent="";
+            }
+        });
+
+        // --- FUNCIONES GLOBALES (ACCESIBLES DESDE HTML) ---
+        window.handleDeleteTask = function(itemId) {
+            const task = checklistData.find(t => t.id === itemId);
+            if (task.rubro === 'Eliminado') {
+                if (confirm('¿Eliminar DEFINITIVAMENTE esta tarea?')) database.ref('tasks').child(itemId).remove();
+            } else {
+                if (confirm('¿Mover a papelera?')) database.ref('tasks').child(itemId).update({ rubro: 'Eliminado' });
             }
         };
 
-        window.toggleSubtasks = function(taskId) {
-            if (openSubtasksTasks.has(taskId)) { openSubtasksTasks.delete(taskId); } else { openSubtasksTasks.add(taskId); }
-            renderChecklist(); 
+        window.toggleSubtasks = function(itemId) {
+            if(openSubtasksTasks.has(itemId)) openSubtasksTasks.delete(itemId); else openSubtasksTasks.add(itemId);
+            renderChecklist();
         };
 
         window.handleShowEditModal = function(item) {
-            // Fix para cuando se pasa el objeto item desde el HTML
-            // (a veces al pasar objetos por onclick pueden perderse datos si hay comillas, 
-            // pero aquí usamos find para asegurar integridad)
+            // Recargar objeto completo por si el paso de parámetros falló
             const realItem = checklistData.find(t => t.id === item.id) || item;
             
-            const form = document.getElementById('add-task-form'); form.reset(); updateRecurrenceUI('none'); 
-            document.getElementById('form-title').textContent = "Editar Tarea"; document.getElementById('edit-task-id').value = realItem.id;
-            document.getElementById('requerimiento').value = realItem.requerimiento; document.getElementById('rubro').value = realItem.rubro; document.getElementById('responsable').value = realItem.responsable; document.getElementById('prioridad').value = realItem.prioridad; document.getElementById('deadline').value = realItem.deadline || ''; document.getElementById('costo').value = realItem.costo || ''; 
+            const form = document.getElementById('add-task-form'); form.reset(); updateRecurrenceUI('none');
+            document.getElementById('form-title').textContent = "Editar Tarea";
+            document.getElementById('edit-task-id').value = realItem.id;
+            document.getElementById('requerimiento').value = realItem.requerimiento;
+            document.getElementById('rubro').value = realItem.rubro;
+            document.getElementById('responsable').value = realItem.responsable;
+            document.getElementById('prioridad').value = realItem.prioridad;
+            document.getElementById('deadline').value = realItem.deadline || '';
+            document.getElementById('costo').value = realItem.costo || '';
             
             editingSubtasks = realItem.subtasks ? [...realItem.subtasks] : [];
             renderEditingSubtasks();
 
-            const rule = realItem.recurrence || { type: 'none' }; document.getElementById('recurrence-type').value = rule.type; updateRecurrenceUI(rule.type);
-            if (rule.type === 'weekly') { document.getElementById('recurrence-weekly-on').value = rule.weeklyOn || '1'; } else if (rule.type === 'monthly') { if (rule.monthlyType === 'dayOfWeek') { form.elements.monthlyType.value = 'dayOfWeek'; document.getElementById('recurrence-monthly-ordinal').value = rule.monthlyOrdinal || '1'; document.getElementById('recurrence-monthly-dayofweek').value = rule.monthlyDayOfWeek || '0'; document.getElementById('monthly-type-weekday').checked = true; } else { form.elements.monthlyType.value = 'dayOfMonth'; document.getElementById('recurrence-monthly-day').value = rule.monthlyDay || ''; document.getElementById('monthly-type-day').checked = true; } } else if (rule.type === 'periodically') { document.getElementById('recurrence-periodically-days').value = rule.periodicallyDays || ''; } 
-            document.getElementById('form-overlay').classList.add('visible'); 
+            const rule = realItem.recurrence || { type: 'none' };
+            document.getElementById('recurrence-type').value = rule.type;
+            updateRecurrenceUI(rule.type);
+            // Cargar datos específicos de recurrencia si existen... (simplificado)
+            
+            document.getElementById('form-overlay').classList.add('visible');
         };
 
-        window.removeEditingSubtask = function(index) {
-            editingSubtasks.splice(index, 1);
+        window.removeEditingSubtask = function(idx) {
+            editingSubtasks.splice(idx, 1);
             renderEditingSubtasks();
         };
 
-        // --- AUTH LOGIC ---
-        const loginScreen = document.getElementById('login-screen');
-        const appContent = document.getElementById('app-content');
-        const loginBtn = document.getElementById('google-login-btn');
-        const logoutBtn = document.getElementById('logout-btn');
-        const loginStatus = document.getElementById('login-status');
-        const userNameDisplay = document.getElementById('user-name');
-        const userEmailDisplay = document.getElementById('user-email');
-        const userPhotoDisplay = document.getElementById('user-photo');
-        
-        loginBtn.addEventListener('click', () => { loginStatus.textContent = "Conectando..."; auth.signInWithPopup(provider).catch((error) => { loginStatus.textContent = "Error: " + error.message; console.error(error); }); });
-        logoutBtn.addEventListener('click', () => auth.signOut());
-        
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                loginScreen.style.display = 'none'; appContent.style.display = 'block';
-                userNameDisplay.textContent = user.displayName; userEmailDisplay.textContent = user.email; userPhotoDisplay.src = user.photoURL;
-                loadInitialData();
-            } else { loginScreen.style.display = 'flex'; appContent.style.display = 'none'; loginStatus.textContent = ""; }
-        });
-
-        // --- DARK MODE LOGIC ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark'); themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.remove('dark'); themeToggleDarkIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.add('dark'); localStorage.setItem('color-theme', 'dark'); } else { document.documentElement.classList.remove('dark'); localStorage.setItem('color-theme', 'light'); }
-            } else {
-                if (document.documentElement.classList.contains('dark')) { document.documentElement.classList.remove('dark'); localStorage.setItem('color-theme', 'light'); } else { document.documentElement.classList.add('dark'); localStorage.setItem('color-theme', 'dark'); }
-            }
-        });
-
-        // --- DATA LOGIC ---
+        // --- FUNCIONES DE LÓGICA INTERNA ---
         function loadInitialData() {
-            const defaultRubros = ['Hogar', 'Trabajo', 'Finanzas', 'Salud', 'Eliminado'];
-            const defaultResponsables = ['Yo', 'Familia', 'Otro'];
+            const defRubros = ['Hogar', 'Trabajo', 'Finanzas', 'Salud', 'Eliminado'];
+            const defResp = ['Yo', 'Familia', 'Otro'];
+            
             Promise.all([database.ref('rubros').once('value'), database.ref('responsables').once('value')]).then(([rs, resps]) => {
-                rubros = rs.val() || defaultRubros;
-                if (!rubros.includes('Eliminado')) { rubros.push('Eliminado'); database.ref('rubros').set(rubros); }
+                rubros = rs.val() || defRubros;
+                if(!rubros.includes('Eliminado')) { rubros.push('Eliminado'); database.ref('rubros').set(rubros); }
                 else if(!rs.val()) database.ref('rubros').set(rubros);
                 
-                responsables = resps.val() || defaultResponsables;
+                responsables = resps.val() || defResp;
                 if(!resps.val()) database.ref('responsables').set(responsables);
                 
-                loadTasks(); listenForTaskChanges(); updateRubroDropdown(); updateResponsableDropdown(); renderFilterModal(); 
+                loadTasks();
+                
+                // Actualizar dropdowns
+                const rSelect = document.getElementById('rubro'); rSelect.innerHTML='';
+                rubros.forEach(r => { if(r!=='Eliminado') rSelect.add(new Option(r,r)); });
+                
+                const respSelect = document.getElementById('responsable'); respSelect.innerHTML='';
+                responsables.forEach(r => respSelect.add(new Option(r,r)));
+                
+                renderFilterModal();
             });
+            
+            // Listeners base de datos
+            database.ref('tasks').on('child_added', s => { const t={...s.val(), id:s.key, subtasks: s.val().subtasks||[]}; if(!checklistData.find(x=>x.id===t.id)) checklistData.push(t); renderChecklist(); });
+            database.ref('tasks').on('child_changed', s => { const t={...s.val(), id:s.key, subtasks: s.val().subtasks||[]}; const i=checklistData.findIndex(x=>x.id===t.id); if(i>-1) checklistData[i]=t; renderChecklist(); });
+            database.ref('tasks').on('child_removed', s => { checklistData=checklistData.filter(x=>x.id!==s.key); renderChecklist(); });
         }
 
         function loadTasks() {
-            database.ref('tasks').once('value', (snapshot) => {
-                const data = snapshot.val();
-                if (data) { checklistData = Object.keys(data).map(key => ({ ...data[key], id: key, subtasks: data[key].subtasks || [] })); } 
-                else { checklistData = []; }
-                renderChecklist(); 
+            database.ref('tasks').once('value', s => {
+                const d = s.val();
+                if(d) checklistData = Object.keys(d).map(k => ({...d[k], id:k, subtasks: d[k].subtasks||[]}));
+                else checklistData = [];
+                renderChecklist();
             });
-        }
-        
-        function listenForTaskChanges() {
-            database.ref('tasks').on('child_added', (s) => { const nt = { ...s.val(), id: s.key, subtasks: s.val().subtasks || [] }; if (!checklistData.find(t => t.id === nt.id)) { checklistData.push(nt); renderChecklist(); } });
-            database.ref('tasks').on('child_changed', (s) => { const ct = { ...s.val(), id: s.key, subtasks: s.val().subtasks || [] }; const idx = checklistData.findIndex(t => t.id === ct.id); if (idx > -1) { checklistData[idx] = ct; renderChecklist(); } });
-            database.ref('tasks').on('child_removed', (s) => { checklistData = checklistData.filter(t => t.id !== s.key); renderChecklist(); });
-        }
-
-        // --- RENDER & HELPERS ---
-        function updateRubroDropdown() { const s = document.getElementById('rubro'); if(s) { s.innerHTML=''; rubros.forEach(r => { if(r!=='Eliminado') { const o=document.createElement('option'); o.value=r; o.textContent=r; s.appendChild(o); }}); } }
-        function updateResponsableDropdown() { const s = document.getElementById('responsable'); if(s) { s.innerHTML=''; responsables.forEach(r => { const o=document.createElement('option'); o.value=r; o.textContent=r; s.appendChild(o); }); } }
-        function renderFilterModal() { const c = document.getElementById('responsible-filters'); c.innerHTML=''; const b=document.createElement('button'); b.className=`filter-btn py-1 px-3 rounded-full text-sm border ${currentResponsibleFilter==='Todos'?'active':'border-gray-300 dark:border-gray-600'}`; b.dataset.filterType='responsible'; b.dataset.filter='Todos'; b.textContent='Todos'; c.appendChild(b); responsables.forEach(r => { const btn=document.createElement('button'); btn.className=`filter-btn py-1 px-3 rounded-full text-sm border ${currentResponsibleFilter===r?'active':'border-gray-300 dark:border-gray-600'}`; btn.dataset.filterType='responsible'; btn.dataset.filter=r; btn.textContent=r; c.appendChild(btn); }); }
-        
-        const formatMoney = (a) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(a).replace('ARS', '$').trim();
-        function getFilteredData() { 
-            const today=new Date(); today.setHours(0,0,0,0); const cm=today.getMonth(); const cy=today.getFullYear();
-            let f = checklistData.filter(i => (currentStatusFilter==='Todos'||i.estado===currentStatusFilter) && (currentPriorityFilter==='Todos'||i.prioridad===currentPriorityFilter) && (currentResponsibleFilter==='Todos'||i.responsable===currentResponsibleFilter));
-            if (currentDateFilter!=='Todas') { f = f.filter(i => { if(!i.deadline) return false; const d=new Date(i.deadline+'T00:00:00'); if(isNaN(d)) return false; 
-                switch(currentDateFilter) { case 'Vencidas': return d<today && i.estado!=='Realizado' && i.estado!=='Suspendido'; case 'Hoy': return d.getTime()===today.getTime(); case 'Este Mes': return d.getMonth()===cm && d.getFullYear()===cy; case 'Proximas': const n=new Date(today); n.setDate(today.getDate()+7); return d>=today && d<=n; default: return true; } }); } return f; 
         }
 
         function renderChecklist() {
-            const container = document.getElementById('checklist-container'); const currentOpenRubros = new Set(openRubros); container.innerHTML = '';
+            const container = document.getElementById('checklist-container'); container.innerHTML='';
             const today = new Date(); today.setHours(0,0,0,0);
-            const grouped = getFilteredData().reduce((acc, i) => { (acc[i.rubro]=acc[i.rubro]||[]).push(i); return acc; }, {});
             
+            // Filtrado
+            let filtered = checklistData.filter(i => 
+                (currentStatusFilter==='Todos'||i.estado===currentStatusFilter) && 
+                (currentPriorityFilter==='Todos'||i.prioridad===currentPriorityFilter) &&
+                (currentResponsibleFilter==='Todos'||i.responsable===currentResponsibleFilter)
+            );
+            if(currentDateFilter!=='Todas') {
+                filtered = filtered.filter(i => {
+                    if(!i.deadline) return false;
+                    const d=new Date(i.deadline+'T00:00:00'); if(isNaN(d)) return false;
+                    switch(currentDateFilter){
+                        case 'Vencidas': return d<today && i.estado!=='Realizado' && i.estado!=='Suspendido';
+                        case 'Hoy': return d.getTime()===today.getTime();
+                        // ...otros casos...
+                        default: return true;
+                    }
+                });
+            }
+
+            const grouped = filtered.reduce((acc, i) => { (acc[i.rubro]=acc[i.rubro]||[]).push(i); return acc; }, {});
+
             rubros.forEach(rubro => {
                 const items = grouped[rubro] || [];
-                const okCount = checklistData.filter(i => i.rubro === rubro && i.estado === 'Realizado').length;
-                const totalInRubro = checklistData.filter(i => i.rubro === rubro).length;
+                const okCount = checklistData.filter(i => i.rubro===rubro && i.estado==='Realizado').length;
+                const total = checklistData.filter(i => i.rubro===rubro).length;
                 
-                const accItem = document.createElement('div'); accItem.className = 'bg-white dark:bg-darkCard rounded-lg shadow-md overflow-hidden mb-4';
+                const card = document.createElement('div');
+                card.className = 'bg-white dark:bg-darkCard rounded-lg shadow-md overflow-hidden mb-4';
                 
                 // Header
-                const header = document.createElement('div'); header.className = 'p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800';
-                header.onclick = (e) => { if (!e.target.closest('.no-toggle')) { if(openRubros.has(rubro)) openRubros.delete(rubro); else openRubros.add(rubro); renderChecklist(); } };
-                const hasOverdue = items.some(i => i.deadline && new Date(i.deadline+'T00:00:00') < today && i.estado !== 'Realizado' && i.estado !== 'Suspendido');
-                header.innerHTML = `<div class="flex items-center text-gray-700 dark:text-gray-200">${rubroIcons['default']}<h3 class="text-lg font-bold ml-2">${rubro}</h3>${hasOverdue?'<span class="w-2.5 h-2.5 bg-red-500 rounded-full ml-2 animate-pulse"></span>':''}</div><div class="flex items-center space-x-2"><span class="text-sm font-semibold text-gray-600 dark:text-gray-400">${okCount}/${totalInRubro}</span><svg class="w-6 h-6 text-gray-500 dark:text-gray-400 transition-transform ${currentOpenRubros.has(rubro)?'rotate-180':''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></div>`;
-                accItem.appendChild(header);
+                const header = document.createElement('div');
+                header.className = 'p-4 flex justify-between items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800';
+                header.onclick = (e) => { if(!e.target.closest('.no-toggle')) { if(openRubros.has(rubro)) openRubros.delete(rubro); else openRubros.add(rubro); renderChecklist(); } };
+                
+                header.innerHTML = `
+                    <div class="flex items-center text-gray-700 dark:text-gray-200">
+                        ${rubroIcons['default']}<h3 class="text-lg font-bold ml-2">${rubro}</h3>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">${okCount}/${total}</span>
+                        <svg class="w-6 h-6 text-gray-500 dark:text-gray-400 transition-transform ${openRubros.has(rubro)?'rotate-180':''}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>`;
+                card.appendChild(header);
 
-                // Content
-                if (currentOpenRubros.has(rubro)) {
-                    const content = document.createElement('div'); content.className = 'border-t border-gray-200 dark:border-gray-700';
-                    if (items.length === 0) content.innerHTML = `<p class="text-center text-gray-500 dark:text-gray-400 p-4">No hay tareas.</p>`;
+                if(openRubros.has(rubro)) {
+                    const content = document.createElement('div');
+                    content.className = 'border-t border-gray-200 dark:border-gray-700';
+                    
+                    if(items.length===0) content.innerHTML = '<p class="text-center p-4 text-gray-500">Sin tareas</p>';
                     else {
-                        // Header Row
-                        const headerRow = document.createElement('div'); headerRow.className = 'hidden md:grid grid-cols-[1fr_90px_120px_140px_130px_140px_100px] gap-4 px-4 pt-3 pb-2 text-xs font-bold uppercase text-gray-500 dark:text-gray-400';
-                        headerRow.innerHTML = `<span>Descripción</span><span class="text-center">Prioridad</span><span class="text-center">Costo</span><span>Responsable</span><span>Vencimiento</span><span class="text-center">Estado</span><span class="text-center">Acciones</span>`;
-                        content.appendChild(headerRow);
+                        const ul = document.createElement('ul');
+                        ul.className = 'divide-y divide-gray-200 dark:divide-gray-700';
                         
-                        const ul = document.createElement('ul'); ul.className = 'divide-y divide-gray-200 dark:divide-gray-700';
                         items.forEach(item => {
                             const li = document.createElement('li'); li.className = 'px-4 py-3';
-                            const row = document.createElement('div'); row.className = 'grid grid-cols-1 md:grid-cols-[1fr_90px_120px_140px_130px_140px_100px] items-center gap-4';
                             
-                            // 1. Desc
-                            const p = document.createElement('p'); p.className = 'text-gray-800 dark:text-gray-200 font-medium'; p.textContent = item.requerimiento; row.appendChild(p);
+                            // Fila Principal
+                            const row = document.createElement('div');
+                            row.className = 'grid grid-cols-1 md:grid-cols-[1fr_90px_100px_120px_120px_120px_100px] gap-4 items-center';
                             
-                            // 2. Prioridad
+                            // Desc
+                            const p = document.createElement('p'); p.className = 'text-gray-800 dark:text-gray-200 font-medium break-words';
+                            p.textContent = item.requerimiento;
+                            row.appendChild(p);
+
+                            // Prioridad
                             const selPrio = document.createElement('select'); selPrio.className = `priority-select p-1 border rounded text-sm w-full dark:bg-darkBg ${priorityStyles[item.prioridad]}`;
-                            priorityOptions.forEach(op => selPrio.add(new Option(op, op, false, op===item.prioridad)));
-                            selPrio.onchange = (e) => handleFieldChange(e, item.id, 'prioridad'); row.appendChild(selPrio);
+                            priorityOptions.forEach(o => selPrio.add(new Option(o,o,false,o===item.prioridad)));
+                            selPrio.onchange = (e) => database.ref('tasks').child(item.id).update({prioridad: e.target.value});
+                            row.appendChild(selPrio);
 
-                            // 3. Costo
-                            const divCost = document.createElement('div'); divCost.className = 'text-center truncate text-sm text-gray-600 dark:text-gray-300 font-medium';
-                            divCost.textContent = formatMoney(item.costo || 0); row.appendChild(divCost);
+                            // Costo
+                            const divCost = document.createElement('div'); divCost.className = 'text-center text-sm text-gray-600 dark:text-gray-300';
+                            divCost.textContent = new Intl.NumberFormat('es-AR', {style:'currency', currency:'ARS'}).format(item.costo||0);
+                            row.appendChild(divCost);
 
-                            // 4. Resp
+                            // Resp
                             const selResp = document.createElement('select'); selResp.className = 'responsible-select p-1 border-b w-full text-sm bg-transparent dark:text-white dark:border-gray-600';
-                            responsables.forEach(r => selResp.add(new Option(r, r, false, r===item.responsable)));
-                            selResp.onchange = (e) => handleFieldChange(e, item.id, 'responsable'); row.appendChild(selResp);
+                            responsables.forEach(r => selResp.add(new Option(r,r,false,r===item.responsable)));
+                            selResp.onchange = (e) => database.ref('tasks').child(item.id).update({responsable: e.target.value});
+                            row.appendChild(selResp);
 
-                            // 5. Fecha
+                            // Fecha
                             const divDate = document.createElement('div'); divDate.className = 'text-sm text-gray-700 dark:text-gray-300 flex items-center';
-                            if (item.deadline && new Date(item.deadline+'T00:00:00') < today && item.estado !== 'Realizado') divDate.classList.add('text-red-600', 'font-bold');
-                            divDate.innerHTML = `<span>${item.deadline || '-'}</span> ${item.recurrence?.type !== 'none' ? '<span class="text-blue-500 ml-1">↻</span>' : ''}`;
+                            divDate.innerHTML = `<span>${item.deadline||'-'}</span> ${item.recurrence?.type!=='none'?'<span class="text-blue-500 ml-1">↻</span>':''}`;
                             row.appendChild(divDate);
 
-                            // 6. Estado
+                            // Estado
                             const selStat = document.createElement('select'); selStat.className = 'status-select p-1 border rounded text-sm w-full dark:bg-darkBg';
-                            statusOrder.forEach(s => selStat.add(new Option(s, s, false, s===item.estado)));
+                            statusOrder.forEach(s => selStat.add(new Option(s,s,false,s===item.estado)));
                             applyStatusStyles(selStat, item.estado);
-                            selStat.onchange = (e) => handleStatusChange(e, item.id); row.appendChild(selStat);
+                            selStat.onchange = (e) => handleStatusChange(e, item.id);
+                            row.appendChild(selStat);
 
-                            // 7. Acciones
-                            const divAct = document.createElement('div'); divAct.className = 'flex gap-2 justify-center';
-                            
-                            // Btn Subtareas
+                            // Acciones
+                            const divAct = document.createElement('div'); divAct.className = 'flex gap-2 justify-center no-toggle';
+                            // Subtareas btn
                             if(item.subtasks && item.subtasks.length > 0) {
-                                const btnSub = document.createElement('button'); btnSub.innerHTML = '📋'; btnSub.className = 'text-gray-500 hover:text-green-600 dark:text-gray-400';
-                                btnSub.onclick = () => toggleSubtasks(item.id); divAct.appendChild(btnSub);
+                                const btnSub = document.createElement('button'); btnSub.innerHTML = '📋'; btnSub.className = 'text-gray-500 hover:text-green-600';
+                                btnSub.onclick = () => toggleSubtasks(item.id);
+                                divAct.appendChild(btnSub);
                             }
-                            // Btn Edit (Pasamos el OBJETO, pero usamos una función global wrapper para evitar problemas de comillas)
-                            const btnEdit = document.createElement('button'); btnEdit.innerHTML = '✏️'; btnEdit.className = 'text-gray-500 hover:text-blue-600 dark:text-gray-400';
-                            // Guardamos el objeto en memoria temporalmente o usamos el ID para buscarlo en la función global
-                            btnEdit.onclick = () => window.handleShowEditModal(item); 
+                            // Edit
+                            const btnEdit = document.createElement('button'); btnEdit.innerHTML = '✏️'; btnEdit.className = 'text-gray-500 hover:text-blue-600';
+                            // IMPORTANTE: Pasamos una función anónima que llama a la global
+                            btnEdit.onclick = function() { window.handleShowEditModal(item); };
                             divAct.appendChild(btnEdit);
-
-                            // Btn Delete
-                            const btnDel = document.createElement('button'); btnDel.innerHTML = '🗑️'; btnDel.className = 'text-gray-500 hover:text-red-600 dark:text-gray-400';
-                            btnDel.onclick = () => handleDeleteTask(item.id); divAct.appendChild(btnDel);
-
+                            // Delete
+                            const btnDel = document.createElement('button'); btnDel.innerHTML = '🗑️'; btnDel.className = 'text-gray-500 hover:text-red-600';
+                            btnDel.onclick = () => handleDeleteTask(item.id);
+                            divAct.appendChild(btnDel);
+                            
                             row.appendChild(divAct);
                             li.appendChild(row);
 
-                            // SUBTAREAS ROW
-                            if (item.subtasks && item.subtasks.length > 0) {
-                                const subRow = document.createElement('div');
-                                subRow.className = `mt-2 pl-4 border-l-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-2 rounded ${openSubtasksTasks.has(item.id) ? '' : 'hidden'}`;
+                            // Fila de Subtareas (Oculta/Visible)
+                            if(item.subtasks && item.subtasks.length > 0) {
+                                const subBox = document.createElement('div');
+                                subBox.className = `mt-3 ml-2 pl-4 border-l-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-2 rounded ${openSubtasksTasks.has(item.id)?'':'hidden'}`;
                                 item.subtasks.forEach((st, idx) => {
                                     const d = document.createElement('div'); d.className = 'flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300';
                                     d.innerHTML = `<input type="checkbox" ${st.done?'checked':''} class="subtask-check" data-tid="${item.id}" data-idx="${idx}"> <span class="${st.done?'line-through opacity-50':''}">${st.text}</span>`;
-                                    subRow.appendChild(d);
+                                    subBox.appendChild(d);
                                 });
-                                li.appendChild(subRow);
+                                li.appendChild(subBox);
                             }
 
                             ul.appendChild(li);
                         });
                         content.appendChild(ul);
                     }
-                    accItem.appendChild(content);
+                    card.appendChild(content);
                 }
-                container.appendChild(accItem);
+                container.appendChild(card);
             });
-            updateSummary();
-
-            // Re-attach listeners for dynamic checkboxes
+            
+            // Re-bind subtareas checks
             document.querySelectorAll('.subtask-check').forEach(c => {
-                c.addEventListener('change', (e) => {
+                c.addEventListener('change', e => {
                     const tid = e.target.dataset.tid;
                     const idx = e.target.dataset.idx;
                     const t = checklistData.find(x => x.id === tid);
@@ -421,34 +422,56 @@
                     }
                 });
             });
+            updateSummary();
         }
 
-        // --- EVENT LISTENERS ---
+        // --- HELPERS ---
+        function applyStatusStyles(el, s) { el.className = el.className.split(' ').filter(c=>!Object.values(statusOptions).join(' ').includes(c)).join(' ') + ' ' + (statusOptions[s]||''); }
+        function renderEditingSubtasks() {
+            const list = document.getElementById('subtasks-list-edit'); list.innerHTML='';
+            editingSubtasks.forEach((st, i) => {
+                const li = document.createElement('li'); li.className='flex justify-between items-center bg-white dark:bg-gray-700 p-2 rounded border dark:border-gray-600';
+                li.innerHTML = `<span class="dark:text-white">${st.text}</span><button type="button" class="text-red-500 font-bold" onclick="removeEditingSubtask(${i})">&times;</button>`;
+                list.appendChild(li);
+            });
+        }
+        function renderFilterModal() { const c = document.getElementById('responsible-filters'); c.innerHTML=''; const b=document.createElement('button'); b.className=`filter-btn py-1 px-3 rounded-full text-sm border ${currentResponsibleFilter==='Todos'?'active':'border-gray-300 dark:border-gray-600'}`; b.dataset.filterType='responsible'; b.dataset.filter='Todos'; b.textContent='Todos'; c.appendChild(b); responsables.forEach(r => { const btn=document.createElement('button'); btn.className=`filter-btn py-1 px-3 rounded-full text-sm border ${currentResponsibleFilter===r?'active':'border-gray-300 dark:border-gray-600'}`; btn.dataset.filterType='responsible'; btn.dataset.filter=r; btn.textContent=r; c.appendChild(btn); }); }
+        function calculateNextDueDate(task) { const today = new Date(); today.setHours(0, 0, 0, 0); let baseDate = (task.deadline && task.deadline !== "") ? new Date(task.deadline + 'T00:00:00') : today; if (baseDate < today) baseDate = today; let nextDate = new Date(baseDate.getTime()); const rule = task.recurrence; if (!rule || rule.type === 'none') return task.deadline; switch (rule.type) { case 'daily': nextDate.setDate(nextDate.getDate() + 1); break; case 'weekly': const targetDay = parseInt(rule.weeklyOn); nextDate.setDate(nextDate.getDate() + 1); while (nextDate.getDay() !== targetDay) { nextDate.setDate(nextDate.getDate() + 1); } break; case 'periodically': nextDate.setDate(nextDate.getDate() + parseInt(rule.periodicallyDays || 1)); break; case 'annually': nextDate.setFullYear(nextDate.getFullYear() + 1); break; case 'monthly': let currentMonth = nextDate.getMonth(); let currentYear = nextDate.getFullYear(); if (rule.monthlyType === 'dayOfMonth') { let targetDayOfMonth = parseInt(rule.monthlyDay); nextDate.setMonth(currentMonth + 1); nextDate.setDate(targetDayOfMonth); if (nextDate.getDate() !== targetDayOfMonth) nextDate.setDate(0); } else if (rule.monthlyType === 'dayOfWeek') { let nextMonth = new Date(currentYear, currentMonth + 1, 1); nextDate = getNthDayOfMonth(nextMonth.getFullYear(), nextMonth.getMonth(), rule.monthlyOrdinal, rule.monthlyDayOfWeek); } break; default: return formatDate(today); } return formatDate(nextDate); }
+        function handleStatusChange(event, itemId) { const itemIndex = checklistData.findIndex(d => d.id === itemId); if (itemIndex === -1) return; const task = checklistData[itemIndex]; const oldState = task.estado; const newState = event.target.value; if (newState === 'Realizado' && oldState !== 'Realizado') { if (task.recurrence && task.recurrence.type !== 'none' && task.deadline && task.deadline !== "") { const newDeadline = calculateNextDueDate(task); const newTask = { ...task, deadline: newDeadline, estado: 'Pendiente', subtasks: task.subtasks ? task.subtasks.map(st => ({ ...st, done: false })) : [] }; delete newTask.id; database.ref('tasks').push(newTask); database.ref('tasks').child(itemId).child('estado').set('Realizado'); } else { database.ref('tasks').child(itemId).child('estado').set(newState); } } else { database.ref('tasks').child(itemId).child('estado').set(newState); } }
+        function updateRecurrenceUI(type) { document.getElementById('recurrence-options-weekly').style.display = type === 'weekly' ? 'block' : 'none'; document.getElementById('recurrence-options-monthly').style.display = type === 'monthly' ? 'block' : 'none'; document.getElementById('recurrence-options-periodically').style.display = type === 'periodically' ? 'block' : 'none'; }
+        function updateSummary() { const dataToSummarize = getFilteredData(); const total = dataToSummarize.length; const stats = dataToSummarize.reduce((acc, item) => { (acc[item.estado] = (acc[item.estado] || 0) + 1); return acc; }, {}); const okCount = stats['Realizado'] || 0; const progress = total > 0 ? (okCount / total) * 100 : 0; document.getElementById('progressBar').style.width = `${progress}%`; let filterText = []; if (currentStatusFilter !== 'Todos') filterText.push(`Estado: ${currentStatusFilter}`); if (currentPriorityFilter !== 'Todos') filterText.push(`Prioridad: ${currentPriorityFilter}`); if (currentDateFilter !== 'Todas') filterText.push(`Vence: ${currentDateFilter}`); if (currentResponsibleFilter !== 'Todos') filterText.push(`Resp: ${currentResponsibleFilter}`); document.getElementById('filter-label').textContent = filterText.length > 0 ? `(${filterText.join(', ')})` : ''; renderPieChart(stats); renderResponsibleChart(dataToSummarize); const statsContainer = document.getElementById('stats'); statsContainer.innerHTML = ''; const fullStats = {'Total': total, 'Realizado': okCount, ...stats}; const statOrder = ['Total', 'Realizado', 'Pendiente', 'En Proceso', 'Suspendido']; statOrder.forEach(key => { const value = fullStats[key]; if (value !== undefined) { const statElement = document.createElement('div'); statElement.className = 'p-2 rounded-lg'; statElement.innerHTML = `<p class="text-2xl font-bold text-gray-800 dark:text-white">${value}</p><p class="text-sm text-gray-600 dark:text-gray-400">${key}</p>`; statsContainer.appendChild(statElement); } }); }
+
+        // --- DOM LOAD ---
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('add-task-btn').addEventListener('click', () => { 
-                const f = document.getElementById('add-task-form'); f.reset(); editingSubtasks=[]; renderEditingSubtasks(); updateRecurrenceUI('none'); 
-                document.getElementById('form-title').innerText="Añadir Tarea"; document.getElementById('edit-task-id').value=""; 
-                document.getElementById('form-overlay').classList.add('visible'); 
+            // Add Task
+            document.getElementById('add-task-btn').addEventListener('click', () => {
+                document.getElementById('add-task-form').reset();
+                editingSubtasks = []; renderEditingSubtasks(); updateRecurrenceUI('none');
+                document.getElementById('form-title').textContent = "Añadir Tarea";
+                document.getElementById('edit-task-id').value = "";
+                document.getElementById('form-overlay').classList.add('visible');
             });
             document.getElementById('close-form-btn').addEventListener('click', () => document.getElementById('form-overlay').classList.remove('visible'));
-            document.getElementById('recurrence-type').addEventListener('change', (e) => updateRecurrenceUI(e.target.value));
             
+            // Subtasks add
+            document.getElementById('add-subtask-btn').addEventListener('click', () => {
+                const txt = document.getElementById('new-subtask-input').value.trim();
+                if(txt) { editingSubtasks.push({text:txt, done:false}); renderEditingSubtasks(); document.getElementById('new-subtask-input').value=''; }
+            });
+
+            // Form Submit
             document.getElementById('add-task-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const fd = new FormData(e.target);
                 const eid = fd.get('edit-task-id');
                 const rec = { type: fd.get('recurrence-type'), weeklyOn: fd.get('recurrence-weekly-on'), monthlyType: fd.get('monthlyType'), monthlyDay: fd.get('recurrence-monthly-day'), monthlyOrdinal: fd.get('recurrence-monthly-ordinal'), monthlyDayOfWeek: fd.get('recurrence-monthly-dayofweek'), periodicallyDays: fd.get('recurrence-periodically-days') };
-                const obj = { 
-                    rubro: fd.get('rubro'), requerimiento: fd.get('requerimiento'), responsable: fd.get('responsable'), 
-                    deadline: fd.get('deadline')||'', prioridad: fd.get('prioridad'), costo: fd.get('costo'), 
-                    recurrence: rec, subtasks: editingSubtasks 
-                };
+                const obj = { rubro: fd.get('rubro'), requerimiento: fd.get('requerimiento'), responsable: fd.get('responsable'), deadline: fd.get('deadline')||'', prioridad: fd.get('prioridad'), costo: fd.get('costo'), recurrence: rec, subtasks: editingSubtasks };
                 if(eid) database.ref('tasks').child(eid).update(obj);
-                else { const k = database.ref('tasks').push().key; database.ref('tasks').child(k).set({...obj, estado: 'Pendiente'}); }
-                e.target.reset(); document.getElementById('form-overlay').classList.remove('visible');
+                else { const k=database.ref('tasks').push().key; database.ref('tasks').child(k).set({...obj, estado:'Pendiente'}); }
+                document.getElementById('form-overlay').classList.remove('visible');
             });
 
-            // Listeners Generales
+            // Management Buttons
             document.getElementById('manage-rubros-btn').addEventListener('click', renderRubrosModal);
             document.getElementById('close-manage-rubros-btn').addEventListener('click', () => document.getElementById('manage-rubros-overlay').classList.remove('visible'));
             document.getElementById('add-rubro-form').addEventListener('submit', handleAddRubro);
@@ -459,31 +482,24 @@
             document.getElementById('add-responsable-form').addEventListener('submit', handleAddResponsable);
             document.getElementById('responsables-list-container').addEventListener('click', (e) => { if(e.target.closest('.edit-responsable-btn')) handleEditResponsable(e.target.closest('.edit-responsable-btn').dataset.responsableName); if(e.target.closest('.delete-responsable-btn')) handleDeleteResponsable(e.target.closest('.delete-responsable-btn').dataset.responsableName); });
 
+            // Filters
             document.getElementById('manage-filters-btn').addEventListener('click', () => { renderFilterModal(); document.getElementById('filter-overlay').classList.add('visible'); });
             document.getElementById('close-filter-btn').addEventListener('click', () => document.getElementById('filter-overlay').classList.remove('visible'));
             document.getElementById('close-filter-btn-bottom').addEventListener('click', () => document.getElementById('filter-overlay').classList.remove('visible'));
-            
             document.getElementById('status-filters').addEventListener('click', handleFilterClick);
             document.getElementById('priority-filters').addEventListener('click', handleFilterClick);
             document.getElementById('date-filters').addEventListener('click', handleFilterClick);
             document.getElementById('responsible-filters').addEventListener('click', handleFilterClick);
 
+            // Import/Export
             document.getElementById('show-import-modal-btn').addEventListener('click', () => { document.getElementById('form-overlay').classList.remove('visible'); document.getElementById('import-overlay').classList.add('visible'); });
             document.getElementById('close-import-btn').addEventListener('click', () => document.getElementById('import-overlay').classList.remove('visible'));
             document.getElementById('close-import-btn-bottom').addEventListener('click', () => document.getElementById('import-overlay').classList.remove('visible'));
             document.getElementById('download-template-btn').addEventListener('click', handleDownloadTemplate);
             document.getElementById('process-import-btn').addEventListener('click', handleProcessImport);
             document.getElementById('export-pdf-btn').addEventListener('click', exportToPDF);
+            document.getElementById('recurrence-type').addEventListener('change', (e) => updateRecurrenceUI(e.target.value));
         });
-
-        // Helper functions
-        function updateRecurrenceUI(type) { 
-            document.getElementById('recurrence-options-weekly').style.display = type === 'weekly' ? 'block' : 'none'; 
-            document.getElementById('recurrence-options-monthly').style.display = type === 'monthly' ? 'block' : 'none'; 
-            document.getElementById('recurrence-options-periodically').style.display = type === 'periodically' ? 'block' : 'none'; 
-        }
-        function applyStatusStyles(el, s) { el.className = el.className.split(' ').filter(c => !Object.values(statusOptions).join(' ').includes(c)).join(' ') + ' ' + (statusOptions[s] || ''); }
-        function toggleAccordion(h) { const r = h.dataset.rubro; if(openRubros.has(r)) openRubros.delete(r); else openRubros.add(r); renderChecklist(); }
     </script>
 </body>
 </html>
