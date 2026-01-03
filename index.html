@@ -17,11 +17,11 @@
 
     <script>
         tailwind.config = {
-            darkMode: 'class', // Habilitar modo oscuro por clase
+            darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
-                        institutional: '#2563EB', // Azul institucional (Mismo tono del logo Fozca)
+                        institutional: '#2563EB', 
                         fozcaDark: '#1a1a1a', 
                     }
                 }
@@ -33,7 +33,6 @@
         html { font-family: 'Inter', sans-serif; }
         body { background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
         
-        /* Estilos base para inputs en modo oscuro */
         .dark body { background-color: #0f172a; color: #f1f5f9; }
         
         .status-select, .responsible-select, .priority-select {
@@ -55,25 +54,24 @@
         
         #recurrence-options-weekly, #recurrence-options-monthly, #recurrence-options-periodically { display: none; }
 
-        /* Estilos Pantalla Login */
         #login-screen { position: fixed; inset: 0; background-color: #f1f5f9; z-index: 100; display: flex; justify-content: center; align-items: center; }
         .dark #login-screen { background-color: #0f172a; }
 
         #app-content { display: none; } 
 
-        /* Estilos Subtareas */
         .subtask-item { transition: all 0.2s; }
         .subtask-item.done span { text-decoration: line-through; color: #9ca3af; }
         
-        /* Cursor para arrastrar */
         .cursor-grab { cursor: grab; }
         .cursor-grabbing { cursor: grabbing; }
-        /* Estilo visual mientras se arrastra */
         .sortable-ghost { opacity: 0.4; background-color: #e2e8f0; }
 
-        /* Ajuste para el Logo en Modo Oscuro (al ser JPG tiene fondo blanco) */
-        .logo-container { mix-blend-mode: multiply; }
-        .dark .logo-container { mix-blend-mode: normal; background-color: white; padding: 5px; border-radius: 8px; }
+        /* AJUSTE LOGO: Se eliminó el fondo blanco forzado */
+        .logo-login { mix-blend-mode: multiply; }
+        .dark .logo-login { mix-blend-mode: normal; border-radius: 12px; }
+        
+        /* Logo Navbar */
+        .logo-nav { border-radius: 6px; }
 
         @media print {
             body { background-color: white !important; color: black !important; }
@@ -94,7 +92,7 @@
         <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl text-center max-w-md w-full mx-4 border border-gray-100 dark:border-slate-700">
             <div class="mb-8">
                 <div class="mx-auto mb-4 flex justify-center">
-                    <img src="logo.jpg" alt="Fozca Logo" class="h-20 w-auto object-contain logo-container">
+                    <img src="logo.jpg" alt="Fozca Logo" class="h-24 w-auto object-contain logo-login">
                 </div>
                 <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Acceso Fozca</h1>
                 <p class="text-gray-500 dark:text-gray-400 mt-1">Gestión Inteligente</p>
@@ -110,11 +108,16 @@
 
     <div id="app-content">
         
-        <div id="user-bar" class="bg-white dark:bg-slate-800 shadow-sm border-b dark:border-slate-700 px-4 py-3 flex justify-between items-center sticky top-0 z-40 transition-colors">
-            <div class="flex items-center gap-2">
-                <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white">Fozca</span>
-                <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-0.5 px-2 rounded-full font-medium">Workspace</span>
+        <div id="user-bar" class="bg-white dark:bg-slate-800 shadow-sm border-b dark:border-slate-700 px-4 py-2 flex justify-between items-center sticky top-0 z-40 transition-colors">
+            <div class="flex items-center gap-3">
+                <img src="logo.jpg" alt="Fozca" class="h-9 w-auto object-contain logo-nav">
+                
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+                    <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white leading-none">Fozca</span>
+                    <span class="text-[10px] sm:text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-0.5 px-2 rounded-full font-medium self-start sm:self-auto">Workspace</span>
+                </div>
             </div>
+            
             <div class="flex items-center gap-3">
                 <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors" title="Cambiar Tema">
                     <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
@@ -187,13 +190,6 @@
         <div id="import-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-import-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Importar Tareas</h2><div class="space-y-6"><div><p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Suba un archivo CSV.</p><button id="download-template-btn" class="text-sm bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Descargar Plantilla CSV</button></div><div class="border-t dark:border-slate-700 pt-4"><label for="csv-file-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Seleccionar archivo .csv</label><input type="file" id="csv-file-input" name="csv-file-input" accept=".csv" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-institutional/10 file:text-institutional dark:file:bg-blue-900/30 dark:file:text-blue-400 hover:file:bg-institutional/20 dark:text-gray-300"></div><div id="import-feedback" class="text-sm text-red-600"></div><div class="flex justify-end pt-6 border-t dark:border-slate-700 mt-6 gap-4"><button id="close-import-btn-bottom" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition-colors">Cerrar</button><button id="process-import-btn" class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 transition-colors">Procesar Importación</button></div></div></div></div>
 
         <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-            <header class="text-center mb-8">
-                <div class="mx-auto mb-2 flex justify-center">
-                    <img src="logo.jpg" alt="Fozca" class="h-24 w-auto object-contain logo-container">
-                </div>
-                <p class="text-md text-gray-600 dark:text-gray-400 mt-2 font-medium">Gestión de Proyectos y Tareas</p>
-            </header>
-
             <div id="controls" class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md mb-8 space-y-4 transition-colors">
                 <div class="flex flex-wrap items-center gap-2">
                     <button id="add-task-btn" class="bg-institutional text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">+ Añadir Tarea</button>
