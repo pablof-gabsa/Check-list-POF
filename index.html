@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" class="light"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fozca - Project Manager</title>
+    <title>Gestión Personal - Project Manager</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -66,11 +66,9 @@
         .cursor-grabbing { cursor: grabbing; }
         .sortable-ghost { opacity: 0.4; background-color: #e2e8f0; }
 
-        /* AJUSTE LOGO: Se eliminó el fondo blanco forzado */
         .logo-login { mix-blend-mode: multiply; }
         .dark .logo-login { mix-blend-mode: normal; border-radius: 12px; }
         
-        /* Logo Navbar */
         .logo-nav { border-radius: 6px; }
 
         @media print {
@@ -92,15 +90,17 @@
         <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl text-center max-w-md w-full mx-4 border border-gray-100 dark:border-slate-700">
             <div class="mb-8">
                 <div class="mx-auto mb-4 flex justify-center">
-                    <img src="logo.jpg" alt="Fozca Logo" class="h-24 w-auto object-contain logo-login">
+                    <img src="logo.jpg" alt="Logo" class="h-24 w-auto object-contain logo-login">
                 </div>
-                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Acceso Fozca</h1>
-                <p class="text-gray-500 dark:text-gray-400 mt-1">Gestión Inteligente</p>
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Gestión Personal</h1>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">Organización y Tareas</p>
             </div>
             
-            <button id="google-login-btn" class="w-full flex items-center justify-center gap-3 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 hover:bg-gray-50 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 font-semibold py-3 px-4 rounded-lg transition-all shadow-sm group">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5 group-hover:scale-110 transition-transform" alt="Google">
-                <span>Ingresar con Google</span>
+            <button id="login-btn" class="w-full flex items-center justify-center gap-3 bg-institutional hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all shadow-sm group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                <span>Ingresar al Sistema</span>
             </button>
             <p id="login-status" class="mt-4 text-xs text-gray-400 min-h-[20px]"></p>
         </div>
@@ -110,11 +110,10 @@
         
         <div id="user-bar" class="bg-white dark:bg-slate-800 shadow-sm border-b dark:border-slate-700 px-4 py-2 flex justify-between items-center sticky top-0 z-40 transition-colors">
             <div class="flex items-center gap-3">
-                <img src="logo.jpg" alt="Fozca" class="h-9 w-auto object-contain logo-nav">
+                <img src="logo.jpg" alt="Logo" class="h-9 w-auto object-contain logo-nav">
                 
                 <div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
-                    <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white leading-none">Fozca</span>
-                    <span class="text-[10px] sm:text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 py-0.5 px-2 rounded-full font-medium self-start sm:self-auto">Workspace</span>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white leading-none">Gestión Personal</span>
                 </div>
             </div>
             
@@ -190,6 +189,26 @@
         <div id="import-overlay" class="form-overlay fixed inset-0 bg-gray-900 bg-opacity-75 items-center justify-center z-50 overflow-y-auto py-10"><div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-2xl w-full max-w-lg relative"><button id="close-import-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white text-3xl">&times;</button><h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Importar Tareas</h2><div class="space-y-6"><div><p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Suba un archivo CSV.</p><button id="download-template-btn" class="text-sm bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Descargar Plantilla CSV</button></div><div class="border-t dark:border-slate-700 pt-4"><label for="csv-file-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Seleccionar archivo .csv</label><input type="file" id="csv-file-input" name="csv-file-input" accept=".csv" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-institutional/10 file:text-institutional dark:file:bg-blue-900/30 dark:file:text-blue-400 hover:file:bg-institutional/20 dark:text-gray-300"></div><div id="import-feedback" class="text-sm text-red-600"></div><div class="flex justify-end pt-6 border-t dark:border-slate-700 mt-6 gap-4"><button id="close-import-btn-bottom" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-700 transition-colors">Cerrar</button><button id="process-import-btn" class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 transition-colors">Procesar Importación</button></div></div></div></div>
 
         <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+    <div id="dashboard-back-btn" class="mb-4 no-print" style="display: none;">
+        <a href="../index.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:scale-105">
+            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Volver al Panel
+        </a>
+    </div>
+    <script>
+        (function() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('source') === 'dashboard') {
+                    const btn = document.getElementById('dashboard-back-btn');
+                    if (btn) btn.style.display = 'block';
+                }
+            } catch(e) { console.log('Error checking source param', e); }
+        })();
+    </script>
+        
             <div id="controls" class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md mb-8 space-y-4 transition-colors">
                 <div class="flex flex-wrap items-center gap-2">
                     <button id="add-task-btn" class="bg-institutional text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">+ Añadir Tarea</button>
@@ -217,7 +236,7 @@
             <main id="checklist-container" class="space-y-6"></main>
 
             <footer class="text-center mt-12 text-sm text-gray-500">
-                <p>Fozca - Datos cifrados</p>
+                <p>Gestión Personal - Datos cifrados</p>
             </footer>
         </div>
     </div>
@@ -247,11 +266,11 @@
         });
 
 
-        // --- CONFIGURACIÓN DE FIREBASE ---
+        // --- CONFIGURACIÓN DE FIREBASE (PABLO PERSONAL) ---
         const firebaseConfig = {
             apiKey: "AIzaSyAdbyflkDL_6FqToeZZlV-mJaUK9ra8hYU",
             authDomain: "personal-pablo-frixione.firebaseapp.com",
-            databaseURL: "https://personal-pablo-frixione-default-rtdb.firebaseio.com",
+            databaseURL: "https://personal-pablo-frixione-default-rtdb.firebaseio.com", 
             projectId: "personal-pablo-frixione",
             storageBucket: "personal-pablo-frixione.firebasestorage.app",
             messagingSenderId: "914107077598",
@@ -261,29 +280,46 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         const auth = firebase.auth();
-        const provider = new firebase.auth.GoogleAuthProvider();
-
+        
         // --- AUTH ---
         const loginScreen = document.getElementById('login-screen');
         const appContent = document.getElementById('app-content');
-        const loginBtn = document.getElementById('google-login-btn');
+        const loginBtn = document.getElementById('login-btn');
         const logoutBtn = document.getElementById('logout-btn');
         const loginStatus = document.getElementById('login-status');
         const userNameDisplay = document.getElementById('user-name');
         const userEmailDisplay = document.getElementById('user-email');
         const userPhotoDisplay = document.getElementById('user-photo');
 
+        // LOGIN ANÓNIMO (IGUAL QUE MODELO)
         loginBtn.addEventListener('click', () => {
-            loginStatus.textContent = "Conectando con Google...";
-            auth.signInWithPopup(provider).catch((error) => { loginStatus.textContent = "Error: " + error.message; console.error(error); });
+            loginStatus.textContent = "Accediendo al sistema...";
+            auth.signInAnonymously().catch((error) => { 
+                loginStatus.textContent = "Error: " + error.message; 
+                console.error(error); 
+            });
         });
+
         logoutBtn.addEventListener('click', () => auth.signOut());
+
         auth.onAuthStateChanged((user) => {
             if (user) {
-                loginScreen.style.display = 'none'; appContent.style.display = 'block';
-                userNameDisplay.textContent = user.displayName; userEmailDisplay.textContent = user.email; userPhotoDisplay.src = user.photoURL || "https://ui-avatars.com/api/?name=" + user.displayName;
+                loginScreen.style.display = 'none'; 
+                appContent.style.display = 'block';
+                
+                const displayName = "Pablo Frixione";
+                const email = "Acceso Personal";
+                
+                userNameDisplay.textContent = displayName; 
+                userEmailDisplay.textContent = email; 
+                userPhotoDisplay.src = "https://ui-avatars.com/api/?name=Pablo+Frixione&background=random";
+                
                 loadInitialData(); 
-            } else { loginScreen.style.display = 'flex'; appContent.style.display = 'none'; loginStatus.textContent = ""; }
+            } else { 
+                loginScreen.style.display = 'flex'; 
+                appContent.style.display = 'none'; 
+                loginStatus.textContent = ""; 
+            }
         });
 
         // --- VARS ---
@@ -300,7 +336,7 @@
         let editingSubtasks = []; 
 
         const statusOrder = ['Pendiente', 'En Proceso', 'Realizado', 'Suspendido'];
-        // Ajuste de colores de fondo para modo oscuro en los selects
+        
         const statusOptions = { 
             'Pendiente': 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/40 dark:text-yellow-200 dark:border-yellow-700', 
             'Realizado': 'bg-institutional/20 text-institutional border-institutional/40 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-700', 
@@ -321,8 +357,8 @@
         const protectedResponsables = ['Yo'];
 
         function loadInitialData() {
-            const defaultRubros = ['Hogar', 'Trabajo', 'Finanzas', 'Salud', 'Eliminado'];
-            const defaultResponsables = ['Yo', 'Familia', 'Otro'];
+            const defaultRubros = ['Administración', 'Mantenimiento', 'Seguridad', 'Eventos', 'Eliminado']; // Default si la DB está vacía
+            const defaultResponsables = ['Gerencia', 'Personal', 'Contratista']; 
             const rubrosPromise = database.ref('rubros').once('value');
             const responsablesPromise = database.ref('responsables').once('value');
             Promise.all([rubrosPromise, responsablesPromise]).then(([rubrosSnapshot, responsablesSnapshot]) => {
@@ -361,7 +397,6 @@
         function renderChecklist() {
             const container = document.getElementById('checklist-container'); const currentOpenRubros = new Set(openRubros); container.innerHTML = ''; const fragment = document.createDocumentFragment(); const today = new Date(); today.setHours(0, 0, 0, 0); const groupedData = getFilteredData().reduce((acc, item) => { (acc[item.rubro] = acc[item.rubro] || []).push(item); return acc; }, {});
             
-            // Renderizamos los rubros en el orden definido en el array 'rubros'
             rubros.forEach(rubro => {
                 const itemsInRubro = checklistData.filter(i => i.rubro === rubro); const itemsToShow = groupedData[rubro] || [];
                 const accordionItem = document.createElement('div'); accordionItem.className = 'bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden transition-colors';
@@ -407,7 +442,6 @@
                             
                             const actionsDiv = document.createElement('div'); actionsDiv.className = 'flex items-center gap-x-1 no-toggle justify-self-start md:justify-self-center'; 
                             
-                            // Botón CheckList
                             if (item.subtasks && item.subtasks.length > 0) {
                                 const checkBtn = document.createElement('button');
                                 checkBtn.className = 'p-1.5 text-gray-500 dark:text-gray-400 hover:text-green-600 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-full transition-colors';
@@ -428,7 +462,6 @@
             });
             container.appendChild(fragment); 
             
-            // Listeners para checkboxes de subtareas
             document.querySelectorAll('.subtask-check').forEach(cb => {
                 cb.addEventListener('change', (e) => {
                     const taskId = e.target.dataset.taskId;
@@ -528,7 +561,6 @@
         function handleMoveTask(event, itemId) { database.ref('tasks').child(itemId).child('rubro').set(event.target.value); }
         function handleDeleteTask(itemId) { const taskToDelete = checklistData.find(d => d.id === itemId); if (confirm(`¿Estás seguro de que quieres eliminar la tarea "${taskToDelete.requerimiento}"?`)) { database.ref('tasks').child(itemId).remove(); } }
         
-        // --- GESTIÓN DE SUBTAREAS EN MODAL (MODIFICADO) ---
         const newSubtaskInput = document.getElementById('new-subtask-input');
         const addSubtaskBtn = document.getElementById('add-subtask-btn');
         const subtasksListEdit = document.getElementById('subtasks-list-edit');
@@ -555,7 +587,6 @@
             editingSubtasks.forEach((st, idx) => {
                 const li = document.createElement('li');
                 li.className = 'flex justify-between items-center bg-white dark:bg-slate-700 p-2 rounded border dark:border-slate-600 dark:text-gray-200 gap-2';
-                // Añadimos data-done para persistir el estado si se reordena
                 li.dataset.done = st.done; 
                 
                 li.innerHTML = `
@@ -566,14 +597,12 @@
                 subtasksListEdit.appendChild(li);
             });
 
-            // Inicializar Sortable si no existe
             if (!subtaskSortable) {
                 subtaskSortable = Sortable.create(subtasksListEdit, {
                     handle: '.handle',
                     animation: 150,
                     ghostClass: 'sortable-ghost',
                     onEnd: function (evt) {
-                        // Reordenar el array editingSubtasks basado en el DOM
                         const newOrder = [];
                         const items = subtasksListEdit.querySelectorAll('li');
                         items.forEach(item => {
@@ -582,7 +611,7 @@
                             newOrder.push({ text: input.value, done: doneState });
                         });
                         editingSubtasks = newOrder;
-                        renderEditingSubtasks(); // Re-renderizar para ajustar índices de onclick
+                        renderEditingSubtasks(); 
                     }
                 });
             }
@@ -606,7 +635,6 @@
             document.getElementById('form-overlay').classList.add('visible'); 
         }
 
-        // --- FUNCIONES DE GESTIÓN RUBROS (MODIFICADO) ---
         let rubrosSortable = null;
 
         function handleAddRubro(event) { event.preventDefault(); const input = document.getElementById('new-rubro-name'); const newRubroName = input.value; if (newRubroName && newRubroName.trim() !== "") { const trimmedName = newRubroName.trim(); if (rubros.includes(trimmedName)) { alert("Ese rubro ya existe."); return; } const eliminadoIndex = rubros.indexOf('Eliminado'); if (eliminadoIndex > -1) { rubros.splice(eliminadoIndex, 0, trimmedName); } else { rubros.push(trimmedName); } database.ref('rubros').set(rubros).then(() => { renderRubrosModal(); updateRubroDropdown(); renderChecklist(); }); input.value = ''; } }
@@ -620,9 +648,8 @@
                 const isProtected = protectedRubros.includes(name); 
                 const itemDiv = document.createElement('div'); 
                 itemDiv.className = 'flex items-center justify-between p-2 border-b dark:border-slate-600 bg-white dark:bg-slate-700';
-                itemDiv.dataset.rubroName = name; // Para Sortable
+                itemDiv.dataset.rubroName = name;
 
-                // Contenido izquierdo con Handle
                 const leftDiv = document.createElement('div');
                 leftDiv.className = 'flex items-center gap-2';
                 leftDiv.innerHTML = `<span class="handle cursor-grab text-gray-400 hover:text-gray-600">☰</span> <span class="${isProtected ? 'text-gray-500' : 'text-gray-800 dark:text-gray-200'}">${name}</span>`;
@@ -638,19 +665,15 @@
                 container.appendChild(itemDiv); 
             }); 
             
-            // Inicializar Sortable para Rubros
             if (!rubrosSortable) {
                 rubrosSortable = Sortable.create(container, {
                     handle: '.handle',
                     animation: 150,
                     ghostClass: 'sortable-ghost',
                     onEnd: function (evt) {
-                        // Obtener el nuevo orden del DOM
                         const newOrder = Array.from(container.children).map(child => child.dataset.rubroName);
                         rubros = newOrder;
-                        // Guardar en Firebase
                         database.ref('rubros').set(rubros);
-                        // Actualizar dropdown y vista principal
                         updateRubroDropdown();
                         renderChecklist();
                     }
@@ -663,10 +686,10 @@
         function renderResponsablesModal() { const container = document.getElementById('responsables-list-container'); container.innerHTML = ''; responsables.forEach(name => { const isProtected = protectedResponsables.includes(name); const itemDiv = document.createElement('div'); itemDiv.className = 'flex items-center justify-between p-2 border-b dark:border-slate-600'; const nameSpan = document.createElement('span'); nameSpan.textContent = name; nameSpan.className = isProtected ? 'text-gray-500' : 'text-gray-800 dark:text-gray-200'; itemDiv.appendChild(nameSpan); const buttonsDiv = document.createElement('div'); buttonsDiv.className = 'flex gap-2'; if (!isProtected) { const editBtn = document.createElement('button'); editBtn.className = 'edit-responsable-btn text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm'; editBtn.textContent = 'Editar'; editBtn.dataset.responsableName = name; buttonsDiv.appendChild(editBtn); const deleteBtn = document.createElement('button'); deleteBtn.className = 'delete-responsable-btn text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm'; deleteBtn.textContent = 'Eliminar'; deleteBtn.dataset.responsableName = name; buttonsDiv.appendChild(deleteBtn); } itemDiv.appendChild(buttonsDiv); container.appendChild(itemDiv); }); document.getElementById('manage-responsables-overlay').classList.add('visible'); }
         function handleEditResponsable(oldName) { const newName = prompt("Editar nombre del responsable:", oldName); if (!newName || newName.trim() === "" || newName === oldName) return; const trimmedName = newName.trim(); if (responsables.includes(trimmedName)) { alert("Ese nombre de responsable ya existe."); return; } const index = responsables.indexOf(oldName); if (index > -1) responsables[index] = trimmedName; const tasksToUpdate = checklistData.filter(task => task.responsable === oldName); const updates = {}; tasksToUpdate.forEach(task => { updates[`/tasks/${task.id}/responsable`] = trimmedName; }); updates[`/responsables`] = responsables; database.ref().update(updates).then(() => { renderResponsablesModal(); updateResponsableDropdown(); renderFilterModal(); }); }
         function handleDeleteResponsable(name) { const tasksAssigned = checklistData.filter(task => task.responsable === name); if (tasksAssigned.length > 0) { alert(`No se puede eliminar a "${name}" porque tiene ${tasksAssigned.length} tarea(s) asignada(s). Por favor, reasígnelas primero.`); return; } if (confirm(`¿Estás seguro de que quieres eliminar a "${name}"?`)) { responsables = responsables.filter(r => r !== name); database.ref('responsables').set(responsables).then(() => { renderResponsablesModal(); updateResponsableDropdown(); renderFilterModal(); }); } }
-        function handleDownloadTemplate() { const headers = "requerimiento;rubro;responsable;prioridad;costo;deadline"; const example = "Compra supermercado;Hogar;Yo;Alta;25000.00;2025-12-01"; const csvContent = "data:text/csv;charset=utf-8," + headers + "\n" + example; const encodedUri = encodeURI(csvContent); const link = document.createElement("a"); link.setAttribute("href", encodedUri); link.setAttribute("download", "plantilla_tareas_personal.csv"); document.body.appendChild(link); link.click(); document.body.removeChild(link); }
+        function handleDownloadTemplate() { const headers = "requerimiento;rubro;responsable;prioridad;costo;deadline"; const example = "Mantenimiento Piscina;Mantenimiento;Contratista;Alta;25000.00;2025-12-01"; const csvContent = "data:text/csv;charset=utf-8," + headers + "\n" + example; const encodedUri = encodeURI(csvContent); const link = document.createElement("a"); link.setAttribute("href", encodedUri); link.setAttribute("download", "plantilla_tareas_club.csv"); document.body.appendChild(link); link.click(); document.body.removeChild(link); }
         function handleProcessImport() { const fileInput = document.getElementById('csv-file-input'); const file = fileInput.files[0]; const feedback = document.getElementById('import-feedback'); if (!file) { feedback.textContent = "Por favor, selecciona un archivo .csv primero."; return; } feedback.textContent = ""; Papa.parse(file, { header: true, skipEmptyLines: true, delimiter: ";", complete: (results) => { processCSVData(results.data); }, error: (err) => { feedback.textContent = "Error al leer el archivo: " + err.message; } }); }
         function parseCSVDate(dateString) { if (!dateString) return ''; const parts = dateString.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/); if (!parts) return ''; const day = parts[1].padStart(2, '0'); const month = parts[2].padStart(2, '0'); const year = parts[3]; return `${year}-${month}-${day}`; }
-        function processCSVData(data) { const updates = {}; let addedCount = 0; const validPriorities = ['Baja', 'Media', 'Alta']; data.forEach((row) => { const req = row.requerimiento ? row.requerimiento.trim() : ''; if (!req) return; let rubro = row.rubro ? row.rubro.trim() : ''; if (!rubros.includes(rubro) || rubro === 'Eliminado') { rubro = 'Hogar'; } let resp = row.responsable ? row.responsable.trim() : ''; if (!responsables.includes(resp)) { resp = 'Yo'; } let prio = row.prioridad ? row.prioridad.trim() : ''; const prioFound = validPriorities.find(p => p.toLowerCase() === prio.toLowerCase()); prio = prioFound || 'Baja'; let deadline = parseCSVDate(row.deadline ? row.deadline.trim() : ''); let costo = row.costo ? parseFloat(row.costo) : 0; const newId = database.ref('tasks').push().key; const newTask = { requerimiento: req, rubro: rubro, responsable: resp, prioridad: prio, costo: costo, deadline: deadline, estado: 'Pendiente', recurrence: { type: 'none' } }; updates[`/tasks/${newId}`] = newTask; addedCount++; }); if (addedCount > 0) { database.ref().update(updates).then(() => { alert(`${addedCount} tarea(s) importada(s) exitosamente.`); document.getElementById('csv-file-input').value = ''; document.getElementById('import-overlay').classList.remove('visible'); }); } else { document.getElementById('import-feedback').textContent = "No se encontraron tareas válidas para importar. Asegúrate de que la columna 'requerimiento' esté completa."; } }
+        function processCSVData(data) { const updates = {}; let addedCount = 0; const validPriorities = ['Baja', 'Media', 'Alta']; data.forEach((row) => { const req = row.requerimiento ? row.requerimiento.trim() : ''; if (!req) return; let rubro = row.rubro ? row.rubro.trim() : ''; if (!rubros.includes(rubro) || rubro === 'Eliminado') { rubro = 'Mantenimiento'; } let resp = row.responsable ? row.responsable.trim() : ''; if (!responsables.includes(resp)) { resp = 'Personal'; } let prio = row.prioridad ? row.prioridad.trim() : ''; const prioFound = validPriorities.find(p => p.toLowerCase() === prio.toLowerCase()); prio = prioFound || 'Baja'; let deadline = parseCSVDate(row.deadline ? row.deadline.trim() : ''); let costo = row.costo ? parseFloat(row.costo) : 0; const newId = database.ref('tasks').push().key; const newTask = { requerimiento: req, rubro: rubro, responsable: resp, prioridad: prio, costo: costo, deadline: deadline, estado: 'Pendiente', recurrence: { type: 'none' } }; updates[`/tasks/${newId}`] = newTask; addedCount++; }); if (addedCount > 0) { database.ref().update(updates).then(() => { alert(`${addedCount} tarea(s) importada(s) exitosamente.`); document.getElementById('csv-file-input').value = ''; document.getElementById('import-overlay').classList.remove('visible'); }); } else { document.getElementById('import-feedback').textContent = "No se encontraron tareas válidas para importar. Asegúrate de que la columna 'requerimiento' esté completa."; } }
         function applyStatusStyles(element, status) { element.className = element.className.split(' ').filter(c => !Object.values(statusOptions).join(' ').includes(c)).join(' '); const styles = statusOptions[status] || 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600'; element.classList.add(...styles.split(' ')); }
         function toggleAccordion(headerElement) { const rubroName = headerElement.dataset.rubro; if (!rubroName) return; if (openRubros.has(rubroName)) { openRubros.delete(rubroName); } else { openRubros.add(rubroName); } renderChecklist(); }
         function exportToPDF() { openRubros = new Set(rubros); renderChecklist(); setTimeout(() => { window.print(); }, 500); }
@@ -681,11 +704,10 @@
 
             showImportModalBtn.addEventListener('click', () => { formOverlay.classList.remove('visible'); importOverlay.classList.add('visible'); }); closeImportBtn.addEventListener('click', () => importOverlay.classList.remove('visible')); closeImportBtnBottom.addEventListener('click', () => importOverlay.classList.remove('visible')); downloadTemplateBtn.addEventListener('click', handleDownloadTemplate); processImportBtn.addEventListener('click', handleProcessImport);
             
-            // Añadir Tarea: Limpiar y mostrar modal
             addTaskBtn.addEventListener('click', () => { 
                 document.getElementById('form-title').textContent = "Añadir Tarea"; 
                 addTaskForm.reset(); 
-                editingSubtasks = []; // Reiniciar subtareas
+                editingSubtasks = []; 
                 renderEditingSubtasks();
                 updateRecurrenceUI('none'); 
                 document.getElementById('edit-task-id').value = ''; 
@@ -694,7 +716,6 @@
             
             closeFormBtn.addEventListener('click', () => formOverlay.classList.remove('visible')); recurrenceTypeSelect.addEventListener('change', (e) => updateRecurrenceUI(e.target.value));
             
-            // Guardar Tarea (Submit)
             addTaskForm.addEventListener('submit', (e) => { 
                 e.preventDefault(); 
                 const formData = new FormData(addTaskForm); 
@@ -708,7 +729,7 @@
                     prioridad: formData.get('prioridad'), 
                     costo: formData.get('costo'), 
                     recurrence: recurrence,
-                    subtasks: editingSubtasks // Guardar subtareas
+                    subtasks: editingSubtasks 
                 }; 
                 if (editId) { database.ref('tasks').child(editId).update(taskData); } else { const newId = database.ref('tasks').push().key; database.ref('tasks').child(newId).set({ ...taskData, estado: 'Pendiente' }); } 
                 addTaskForm.reset(); 
